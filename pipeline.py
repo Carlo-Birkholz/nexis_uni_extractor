@@ -2,7 +2,7 @@ from parser import parser
 from transformer import convert_files_to_plain_text
 import os
 
-def convert_files_to_csv(input_folder, output_folder):
+def convert_files_to_csv(input_folder, output_folder, language):
   
   convert_files_to_plain_text(input_folder, input_folder)
 
@@ -22,7 +22,7 @@ def convert_files_to_csv(input_folder, output_folder):
 
       if file_extension == '.txt':
           # Convert txt to csv
-          parser(input_file, output_file)
+          parser(input_file, output_file, language)
           
           print(f"Converted {file_name} to csv")
   print("Conversion completed")

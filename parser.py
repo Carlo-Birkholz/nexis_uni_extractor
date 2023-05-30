@@ -4,7 +4,7 @@ import pandas as pd
 from dateutil import parser
 from helpers import process_string, format_date
 
-def parser(input_path, output_path):
+def parser(input_path, output_path, language='germany'):
   # define features of the article
   titles = []
   publishers = []
@@ -34,7 +34,7 @@ def parser(input_path, output_path):
     publisher = article.split('\n\n', 1)[1].split('\n\n',1)[0]
     # get publish date
     date_str = article.split('\n\n', 1)[1].split('\n\n',1)[1].split('\n\n',1)[0]
-    publish_date = format_date(date_str, 'german')
+    publish_date = format_date(date_str, language)
     # get edition
     edition_str = article.split('\n\n',4)[3]
     if "edition" in edition_str.lower():
