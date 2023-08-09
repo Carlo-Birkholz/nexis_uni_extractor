@@ -82,6 +82,9 @@ def format_date(date_string, language):
         return "Invalid date format"
 
 def process_string(input_string):
+    if input_string is None:
+        return 0, None
+        
     # Find the index of "[]" in the input string
     index_brackets = input_string.find("[]")
 
