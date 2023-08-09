@@ -48,3 +48,9 @@ to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
+## License
+
+MIT License
+
+Copyright (c) 2023 zhong3401
+
