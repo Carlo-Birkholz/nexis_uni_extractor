@@ -33,8 +33,8 @@ In E:\github\nexis_uni_extractor\test\more_data after:
 ```python
 from pipeline import convert_files_to_csv
 
-input_folder = 'E:\\github\\nexis_uni_extractor\\test\\more_data'
-output_folder = 'E:\\github\\nexis_uni_extractor\\test\\more_data'
+input_folder = 'test\\more_data'
+output_folder = 'test\\more_data'
 convert_files_to_csv(input_folder, output_folder, language='french')
 ```
 
