@@ -58,6 +58,7 @@ def parser(input_path, output_path, language='germany'):
     byline = byline_matches[0] if byline_matches else "NaN"
     
     # match body
+    pattern_body = r'Body(.*?)Load-Date'
     try:
       match = re.findall(pattern_body, article, re.DOTALL)[0].strip()
       body = match.replace("[image]", '').replace("\n", " ").strip()
