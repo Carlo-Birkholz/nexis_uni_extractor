@@ -1,4 +1,4 @@
-from parser import parser
+from parse import parser
 from transformer import convert_files_to_plain_text
 import os
 
