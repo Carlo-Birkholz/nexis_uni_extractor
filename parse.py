@@ -29,34 +29,52 @@ def parser(input_path, output_path, language='germany'):
   for article in matches:
     article = article.replace('[]', '', 1).strip()
 
-    # get title,publisher
-    title = article.split('\n\n', 1)[0].replace('\n', ' ')
-    publisher = article.split('\n\n', 1)[1].split('\n\n',1)[0]
-    # get publish date
-    date_str = article.split('\n\n', 1)[1].split('\n\n',1)[1].split('\n\n',1)[0]
-    publish_date = format_date(date_str, language)
-    # get edition
-    edition_str = article.split('\n\n',4)[3]
-    if "edition" in edition_str.lower():
-        pass  # No changes needed, edition_str remains the same
+    # check if 1 or 2 line title
+    if article.split('\n\n', 1)[0].endswith(';'):
+      print("Two line title")
+      # get title,publisher if title has 2 lines
+      title = article.split('\n\n', 1)[0].replace('\n', ' ')
+      #title += ' ' + article.split('\n\n', 1)[1].split('\n\n', 1)[0]
+      publisher = article.split('\n\n', 1)[1].split('\n\n', 1)[1].split('\n\n', 1)[0]
+      # get publish date if title has 2 lines
+      date_str = article.split('\n\n', 1)[1].split('\n\n', 1)[1].split('\n\n', 1)[1].split('\n\n', 1)[0]
+      publish_date = format_date(date_str, language)
+      # get edition if title has 2 lines
+      edition_str = article.split('\n\n',5)[4]
+      if "edition" in edition_str.lower():
+          pass  # No changes needed, edition_str remains the same
+      else:
+          edition_str = "NaN"
+
     else:
-        edition_str = "NaN"
-    
+      # get title,publisher if title has 1 line
+      title = article.split('\n\n', 1)[0].replace('\n', ' ')
+      publisher = article.split('\n\n', 1)[1].split('\n\n', 1)[0]
+      # get publish date if title has 1 line
+      date_str = article.split('\n\n', 1)[1].split('\n\n', 1)[1].split('\n\n', 1)[0]
+      publish_date = format_date(date_str, language)
+      # get edition
+      edition_str = article.split('\n\n',4)[3]
+      if "edition" in edition_str.lower():
+          pass  # No changes needed, edition_str remains the same
+      else:
+          edition_str = "NaN"
+
     # match section
     pattern_section = r"Section:(.*?)\n"
     section_matches = re.findall(pattern_section, article, re.DOTALL)
     section = section_matches[0] if section_matches else "NaN"
-    
+
     # match length
     pattern_length = r"Length:(.*?)\n"
     matches_lengths = re.findall(pattern_length, article, re.DOTALL)[0]
     length = int(matches_lengths.split()[0])
-    
+
     # match byline
     pattern_byline = r"Byline:(.*?)\n"
     byline_matches = re.findall(pattern_byline, article, re.DOTALL)
     byline = byline_matches[0] if byline_matches else "NaN"
-    
+
     # match body
     pattern_body = r'Body(.*?)Load-Date'
     try:
@@ -64,10 +82,10 @@ def parser(input_path, output_path, language='germany'):
       body = match.replace("[image]", '').replace("\n", " ").strip()
     except IndexError:
         body = None
-    
+
     # match graph
     graphic, body = process_string(body)
-    
+
     titles.append(title)
     publishers.append(publisher)
     publish_dates.append(publish_date)

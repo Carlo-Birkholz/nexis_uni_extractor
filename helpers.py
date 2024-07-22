@@ -36,6 +36,7 @@ def format_date(date_string, language):
             'januar': 'January',
             'februar': 'February',
             'märz': 'March',
+            'maerz': 'March',
             'april': 'April',
             'mai': 'May',
             'juni': 'June',

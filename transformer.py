@@ -1,6 +1,7 @@
 import os
 import subprocess
 
+
 def convert_files_to_plain_text(input_folder, output_folder):
     # Create the output folder if it doesn't exist
     if not os.path.exists(output_folder):
@@ -18,13 +19,13 @@ def convert_files_to_plain_text(input_folder, output_folder):
 
         if file_extension == '.rtf':
             # Run the pandoc command to convert RTF to plain text
-            pandoc_cmd = ["pandoc", "--from=rtf", "--to=plain", "-s", input_file, "-o", output_file]
+            pandoc_cmd = ["C:\\Program Files\\Pandoc\\pandoc.exe", "--from=rtf", "--to=plain", "-s", input_file, "-o", output_file]
             subprocess.run(pandoc_cmd)
             print(f"Converted {file_name} to plain text")
 
         elif file_extension == '.docx':
             # Run the pandoc command to convert DOCX to plain text
-            pandoc_cmd = ["pandoc", "--from=docx", "--to=plain", "-s", input_file, "-o", output_file]
+            pandoc_cmd = ["C:\\Program Files\\Pandoc\\pandoc.exe", "--from=docx", "--to=plain", "-s", input_file, "-o", output_file]
             subprocess.run(pandoc_cmd)
             print(f"Converted {file_name} to plain text")
 
